@@ -19,7 +19,9 @@ flutter pub get
   ```dart
   flutter run
   ```
+## About the Application
 
+This web application is for a hypermarket, the market has a physical location but also wants to provide its customers with an online service so they can buy or order any item they want from home.
 
 
 # Mobile-Onlinestore
