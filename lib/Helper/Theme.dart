@@ -19,7 +19,7 @@ class AppTheme {
     primaryColor: primaryColor,
     accentColor: accentColor,
     textTheme: lightTextTheme,
-    // fontFamily: 'Montserrat',
+    fontFamily: 'Raleway',
     primarySwatch: Colors.lightGreen,
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: blackTwo),
