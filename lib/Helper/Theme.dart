@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 class AppTheme {
   static const primaryColor = Color(0xffE8F2E7);
-  static const accentColor = Color(0xffEFEFDA);
+  static const accentColor = Color(0xffE8F2E7);
   static const blackTwo = const Color(0xFF454545);
   static const white = const Color(0xffffffff);
   static const black = const Color(0xff000000);
@@ -27,14 +27,12 @@ class AppTheme {
       // backgroundColor: Colors.white,
       color: primaryColor,
       textTheme: TextTheme(
-          headline6: _headline6.copyWith(
-              color: white, fontWeight: FontWeight.w300)),
-      elevation: 1,
+          headline6: _headline6.copyWith(fontWeight: FontWeight.w300)),
       shadowColor: primaryColor,
     ),
     tabBarTheme: TabBarTheme(
-      labelColor: accentColor,
-      unselectedLabelColor: accentColor.withOpacity(0.5),
+      labelColor: black,
+      unselectedLabelColor: black.withOpacity(0.5),
     ),
   );
 
@@ -122,5 +120,4 @@ class AppTheme {
     fontWeight: FontWeight.w400,
     fontSize: 8,
   );
-
 }
