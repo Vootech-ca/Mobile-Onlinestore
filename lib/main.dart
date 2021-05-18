@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
 import 'Helper/Theme.dart';
 import 'UI/Screens/HomeScreen/HomeScreen.dart';
@@ -17,11 +18,12 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       //GENERATE ROUTES
-      initialRoute: SplashScreen.routeSplashScreen,
+      initialRoute: SearchScreen.routeSearchScreen,
       routes: {
-        SplashScreen.routeSplashScreen: (context) => SplashScreen(),
+        // SplashScreen.routeSplashScreen: (context) => SplashScreen(),
         HomeScreen.routeHomeScreen: (context) => HomeScreen(),
         CategoriesScreen.routeCategoriesScreen: (context) => CategoriesScreen(),
+        SearchScreen.routeSearchScreen: (context) => SearchScreen(),
       },
     );
   }

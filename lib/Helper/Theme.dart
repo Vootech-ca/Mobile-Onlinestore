@@ -28,7 +28,7 @@ class AppTheme {
       color: primaryColor,
       textTheme: TextTheme(
           headline6: _headline6.copyWith(fontWeight: FontWeight.w300)),
-      shadowColor: primaryColor,
+      shadowColor: primaryColor.withOpacity(0.7),
     ),
     tabBarTheme: TabBarTheme(
       labelColor: black,

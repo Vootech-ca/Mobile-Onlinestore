@@ -6,6 +6,8 @@ import 'package:simple_grid/simple_grid.dart';
 SpGridItem ProductCard(BuildContext context) {
   return SpGridItem(
     xs: 6,
+    sm: 4,
+    md: 3,
     child: Container(
       // margin: const EdgeInsets.all(5.0),
       padding: const EdgeInsets.all(8.0),
