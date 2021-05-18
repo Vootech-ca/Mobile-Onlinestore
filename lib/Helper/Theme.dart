@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 class AppTheme {
   static const primaryColor = Color(0xffE8F2E7);
-  static const accentColor = Color(0xffE8F2E7);
+  static const accentColor = Color(0xffEFEFDA);
   static const blackTwo = const Color(0xFF454545);
   static const white = const Color(0xffffffff);
   static const black = const Color(0xff000000);

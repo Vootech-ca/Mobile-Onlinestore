@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/HomeScreen/HomeScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeSplashScreen = '/';
