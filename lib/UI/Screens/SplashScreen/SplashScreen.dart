@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           SizedBox.shrink(),
           Center(
-            child: Image.asset(Constants.logo, scale: 4),
+            child: Image.asset(Constants.logoAnim, scale: 4),
           ),
           Align(
               alignment: Alignment.bottomCenter,
@@ -43,11 +43,11 @@ class _SplashScreenState extends State<SplashScreen> {
                     "SPONSERED BY",
                     style: theme(context).textTheme.button,
                   ),
-                  Text(
-                    "VOO TECH",
-                    style: theme(context).textTheme.headline1!.copyWith(fontSize: 18),
-                  ),
-                  // Image.asset(Constants.logoVooTech, scale: 6)
+                  // Text(
+                  //   "VOO TECH",
+                  //   style: theme(context).textTheme.headline1!.copyWith(fontSize: 18),
+                  // ),
+                  Image.asset(Constants.logoVooTech, scale: 5)
                 ],
               ))
         ],
