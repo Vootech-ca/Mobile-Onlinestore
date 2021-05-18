@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       //GENERATE ROUTES
-      initialRoute: SearchScreen.routeSearchScreen,
+      initialRoute: SplashScreen.routeSplashScreen,
       routes: {
-        // SplashScreen.routeSplashScreen: (context) => SplashScreen(),
+        SplashScreen.routeSplashScreen: (context) => SplashScreen(),
         HomeScreen.routeHomeScreen: (context) => HomeScreen(),
         CategoriesScreen.routeCategoriesScreen: (context) => CategoriesScreen(),
         SearchScreen.routeSearchScreen: (context) => SearchScreen(),
