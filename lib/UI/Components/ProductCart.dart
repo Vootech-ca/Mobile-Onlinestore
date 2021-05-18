@@ -1,7 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:simple_grid/simple_grid.dart';
+
+import '../../Constants.dart';
+import '../../dummyData.dart';
 
 SpGridItem ProductCard(BuildContext context) {
   return SpGridItem(
@@ -30,8 +34,10 @@ SpGridItem ProductCard(BuildContext context) {
           SizedBox(
             height: 120,
             child: Center(
-              child: Image.network(
-                'https://sc04.alicdn.com/kf/HTB1XZmDJFXXXXaAXFXX760XFXXXb.png',
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: productImageDummy,
+                placeholder: (context, url) =>Image.asset(Constants.placeHolder),
               ),
             ),
           ),
