@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/UI/Components/ProductCart.dart';
+import 'package:mobile_onlinestore/dummyData.dart';
 import 'package:simple_grid/simple_grid.dart';
 
 class CategoriesScreen extends StatelessWidget {
   static const String routeCategoriesScreen = '/categories';
-  final List categories = [
-    'Man',
-    'Women',
-    'Child',
-    'Fruits',
-    'Accessories',
-    'Electronic',
-  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -22,7 +16,7 @@ class CategoriesScreen extends StatelessWidget {
           title: Text('Categories'),
           bottom: TabBar(
             isScrollable: true,
-            tabs: categories
+            tabs: dCategories
                 .map<Tab>((e) => Tab(
                       text: e,
                     ))
@@ -30,28 +24,30 @@ class CategoriesScreen extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: categories
-              .map((e) => Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.all(5),
-                      child: SpGrid(
-                        width: Responsive.sW(context),
-                        spacing: 15,
-                        runSpacing: 15,
-                        children: [
-                          ProductCard(context),
-                          ProductCard(context),
-                          ProductCard(context),
-                          ProductCard(context),
-                          ProductCard(context),
-                          ProductCard(context),
-                          ProductCard(context),
-                          ProductCard(context),
-                        ],
-                      ),
+          children: dCategories
+              .map(
+                (e) => Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.all(5),
+                    child: SpGrid(
+                      width: Responsive.sW(context),
+                      spacing: 15,
+                      runSpacing: 15,
+                      children: [
+                        ProductCard(context),
+                        ProductCard(context),
+                        ProductCard(context),
+                        ProductCard(context),
+                        ProductCard(context),
+                        ProductCard(context),
+                        ProductCard(context),
+                        ProductCard(context),
+                      ],
                     ),
-                  ))
+                  ),
+                ),
+              )
               .toList(),
         ),
       ),

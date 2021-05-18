@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
 import 'Helper/Theme.dart';
 import 'UI/Screens/HomeScreen/HomeScreen.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeSplashScreen: (context) => SplashScreen(),
         HomeScreen.routeHomeScreen: (context) => HomeScreen(),
         CategoriesScreen.routeCategoriesScreen: (context) => CategoriesScreen(),
+        SearchScreen.routeSearchScreen: (context) => SearchScreen(),
       },
     );
   }
