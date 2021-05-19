@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
 import 'Helper/Theme.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeHomeScreen: (context) => HomeScreen(),
         CategoriesScreen.routeCategoriesScreen: (context) => CategoriesScreen(),
         SearchScreen.routeSearchScreen: (context) => SearchScreen(),
+        DetailsScreen.routeDetailsScreen: (context) => DetailsScreen(),
       },
     );
   }

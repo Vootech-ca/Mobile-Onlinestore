@@ -8,6 +8,8 @@ import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/UI/Components/ProductCart.dart';
+import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 import 'package:simple_grid/simple_grid.dart';
 
 import '../../../dummyData.dart';
@@ -31,12 +33,16 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Image.asset(
-                Constants.searchIcon,
-                color: const Color(0xFF454545),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  Constants.searchIcon,
+                  color: const Color(0xFF454545),
+                ),
               ),
+              onTap: () =>
+                  Navigator.pushNamed(context, SearchScreen.routeSearchScreen),
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
@@ -65,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             imageUrl: adImagesList[index],
                             placeholder: (context, url) =>
-                               Image.asset(Constants.placeHolder),
+                                Image.asset(Constants.placeHolder),
                           ));
                     },
                     // slideTransform: CubeTransform(),
@@ -79,39 +85,55 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Categories",
-                  style: theme(context).textTheme.headline5,
+                child: Row(
+                  children: [
+                    Text(
+                      "Categories",
+                      style: theme(context).textTheme.headline5,
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          "See All",
+                          style: theme(context).textTheme.bodyText2,
+                        ),
+                      ),
+                      onTap: () => Navigator.pushNamed(
+                          context, CategoriesScreen.routeCategoriesScreen),
+                    ),
+                  ],
                 ),
               ),
               Container(
-                height: 220,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          categoryWidget(context),
-                          categoryWidget(context),
-                          categoryWidget(context),
-                          categoryWidget(context),
-                        ],
+                  height: 220,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            categoryWidget(context),
+                            categoryWidget(context),
+                            categoryWidget(context),
+                            categoryWidget(context),
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          categoryWidget(context),
-                          categoryWidget(context),
-                          categoryWidget(context),
-                          categoryWidget(context),
-                        ],
+                      Expanded(
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            categoryWidget(context),
+                            categoryWidget(context),
+                            categoryWidget(context),
+                            categoryWidget(context),
+                          ],
+                        ),
                       ),
-                    ),
-                ],)
-              ),
+                    ],
+                  )),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -119,7 +141,6 @@ class HomeScreen extends StatelessWidget {
                   style: theme(context).textTheme.headline5,
                 ),
               ),
-
               SpGrid(
                 width: Responsive.sW(context),
                 spacing: 15,
@@ -135,7 +156,6 @@ class HomeScreen extends StatelessWidget {
                   ProductCard(context),
                 ],
               ),
-
             ],
           ),
         ));
@@ -159,7 +179,7 @@ class HomeScreen extends StatelessWidget {
           child: CachedNetworkImage(
             fit: BoxFit.fill,
             imageUrl: fruitsImageDummy,
-            placeholder: (context, url) =>Image.asset(Constants.placeHolder),
+            placeholder: (context, url) => Image.asset(Constants.placeHolder),
           ),
         )
       ],

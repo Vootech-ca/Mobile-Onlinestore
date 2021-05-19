@@ -16,6 +16,10 @@ class SearchScreen extends StatelessWidget {
       key: _scaffoldKey,
       endDrawer: Filter(),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: TextField(
           decoration: InputDecoration(
             hintText: 'Search product',
