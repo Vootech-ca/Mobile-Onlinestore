@@ -100,7 +100,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {},
-                    child: Text('Order Now'),
+                    child: Text('Order Now '),
                   ),
                 ),
                 SizedBox(width: 10),
