@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/HomeScreen/HomeScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
@@ -19,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1300), () {
       // Do Something Before it Goes to Home Screen
-      Navigator.pushNamed(context, HomeScreen.routeHomeScreen);
+      Navigator.pushNamed(context, CartScreen.routeCartScreen);
     });
   }
 
