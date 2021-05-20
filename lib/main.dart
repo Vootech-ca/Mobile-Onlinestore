@@ -4,6 +4,7 @@ import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
 import 'Helper/Theme.dart';
+import 'UI/Screens/CartScreen/CartScreen.dart';
 import 'UI/Screens/HomeScreen/HomeScreen.dart';
 import 'UI/Screens/SplashScreen/SplashScreen.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         CategoriesScreen.routeCategoriesScreen: (context) => CategoriesScreen(),
         SearchScreen.routeSearchScreen: (context) => SearchScreen(),
         DetailsScreen.routeDetailsScreen: (context) => DetailsScreen(),
+        CartScreen.routeCartScreen: (context) => CartScreen(),
       },
     );
   }
