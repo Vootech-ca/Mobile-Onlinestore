@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1300), () {
       // Do Something Before it Goes to Home Screen
-      Navigator.pushNamed(context, CartScreen.routeCartScreen);
+      Navigator.pushNamed(context, HomeScreen.routeHomeScreen);
     });
   }
 
