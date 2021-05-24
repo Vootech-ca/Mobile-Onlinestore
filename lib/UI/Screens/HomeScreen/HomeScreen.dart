@@ -3,12 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
-import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
-import 'package:mobile_onlinestore/UI/Components/ProductCart.dart';
-import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Components/MainDrawer.dart';
+import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoryScreen/CategoryScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 import 'package:simple_grid/simple_grid.dart';
@@ -22,16 +21,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(),
-        ),
+      key:
+        _scaffoldKey,
+        drawer: MainDrawer(),
         appBar: AppBar(
-          // title: Text(
-          //   "Home",
-          //   style: theme(context).textTheme.headline5,
-          // ),
+          toolbarHeight: 50,
           leading: GestureDetector(
-            // onTap: () => _scaffoldKey.currentState!.openDrawer(),
+            onTap: () => _scaffoldKey.currentState!.openDrawer(),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Image.asset(
@@ -52,12 +48,16 @@ class HomeScreen extends StatelessWidget {
               onTap: () =>
                   Navigator.pushNamed(context, SearchScreen.routeSearchScreen),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Image.asset(
-                Constants.cartIcon,
-                color: const Color(0xFF454545),
+            GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  Constants.cartIcon,
+                  color: const Color(0xFF454545),
+                ),
               ),
+              onTap: () =>
+                  Navigator.pushNamed(context, CartScreen.routeCartScreen),
             )
           ],
         ),
