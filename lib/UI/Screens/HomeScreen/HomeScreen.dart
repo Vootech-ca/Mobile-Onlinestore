@@ -9,6 +9,7 @@ import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/UI/Components/ProductCart.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/CategoryScreen/CategoryScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 import 'package:simple_grid/simple_grid.dart';
 
@@ -16,20 +17,27 @@ import '../../../dummyData.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeHomeScreen = '/home';
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: ListView(),
+        ),
         appBar: AppBar(
           // title: Text(
           //   "Home",
           //   style: theme(context).textTheme.headline5,
           // ),
-          leading: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Image.asset(
-              Constants.menu2Icon,
-              color: const Color(0xFF454545),
+          leading: GestureDetector(
+            // onTap: () => _scaffoldKey.currentState!.openDrawer(),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset(
+                Constants.menu2Icon,
+                color: const Color(0xFF454545),
+              ),
             ),
           ),
           actions: [
@@ -63,15 +71,21 @@ class HomeScreen extends StatelessWidget {
                 child: CarouselSlider.builder(
                     scrollDirection: Axis.horizontal,
                     unlimitedMode: true,
+                    slideIndicator: CircularSlideIndicator(
+                        padding: EdgeInsets.only(bottom: 20),
+                        currentIndicatorColor: theme(context).primaryColor),
                     slideBuilder: (index) {
                       return Container(
                           margin:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: adImagesList[index],
-                            placeholder: (context, url) =>
-                                Image.asset(Constants.placeHolder),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: adImagesList[index],
+                              placeholder: (context, url) =>
+                                  Image.asset(Constants.placeHolder),
+                            ),
                           ));
                     },
                     // slideTransform: CubeTransform(),
@@ -122,31 +136,36 @@ class HomeScreen extends StatelessWidget {
       xs: 4,
       sm: 3,
       md: 3,
-      child: Column(
-        children: [
-          Container(
-            height: 80,
-            width: 80,
-            decoration: BoxDecoration(
-              border: Border.all(color: theme(context).primaryColor, width: 2),
-              borderRadius: BorderRadius.circular(100),
-            ),
-            margin: EdgeInsets.all(4),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: fruitsImageDummy,
-                placeholder: (context, url) =>
-                    Image.asset(Constants.placeHolder),
+      child: GestureDetector(
+        onTap: () =>
+            Navigator.pushNamed(context, CategoryScreen.categoryScreenRoute),
+        child: Column(
+          children: [
+            Container(
+              height: 80,
+              width: 80,
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: theme(context).primaryColor, width: 2),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              margin: EdgeInsets.all(4),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: fruitsImageDummy,
+                  placeholder: (context, url) =>
+                      Image.asset(Constants.placeHolder),
+                ),
               ),
             ),
-          ),
-          Text(
-            'Fruits',
-            style: textTheme(context).bodyText2,
-          )
-        ],
+            Text(
+              'Men',
+              style: textTheme(context).bodyText2,
+            )
+          ],
+        ),
       ),
     );
   }

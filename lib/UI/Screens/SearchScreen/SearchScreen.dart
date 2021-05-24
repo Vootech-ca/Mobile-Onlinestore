@@ -16,8 +16,9 @@ class SearchScreen extends StatelessWidget {
       key: _scaffoldKey,
       endDrawer: Filter(),
       appBar: AppBar(
+        titleSpacing: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
         title: TextField(

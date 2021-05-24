@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/CategoryScreen/CategoryScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
         SearchScreen.routeSearchScreen: (context) => SearchScreen(),
         DetailsScreen.routeDetailsScreen: (context) => DetailsScreen(),
         CartScreen.routeCartScreen: (context) => CartScreen(),
+        CategoryScreen.categoryScreenRoute: (context) => CategoryScreen(),
       },
     );
   }
