@@ -8,6 +8,7 @@ import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/Models/CategoryModel.dart';
 import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
+import 'package:mobile_onlinestore/StateManagement/ItemProvider.dart';
 import 'package:mobile_onlinestore/UI/Components/MainDrawer.dart';
 import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoryScreen/CategoryScreen.dart';
@@ -117,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                         spacing: 15,
                         runSpacing: 15,
                         children: catState.categoriesList
-                            .map((e) => categoryWidget(context,e))
+                            .map((e) => categoryWidget(context, e))
                             .toList()
                         //[
                         // categoryWidget(context),
@@ -138,14 +139,18 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 
-  SpGridItem categoryWidget(BuildContext context,Category category) {
+  SpGridItem categoryWidget(BuildContext context, Category category) {
     return SpGridItem(
       xs: 4,
       sm: 3,
       md: 3,
       child: GestureDetector(
-        onTap: () =>
-            Navigator.pushNamed(context, CategoryScreen.categoryScreenRoute),
+        onTap: () {
+          Provider.of<ItemProvider>(context,listen: false).getItemsListByCatId(category.id.toString());
+           Navigator.pushNamed(
+            context, CategoryScreen.categoryScreenRoute,
+            arguments: category);
+        },
         child: Column(
           children: [
             Container(

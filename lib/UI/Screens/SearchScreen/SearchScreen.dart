@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/StateManagement/ItemProvider.dart';
 import 'package:mobile_onlinestore/UI/Components/ProductCart.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/Components/Filter.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_grid/simple_grid.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -12,6 +14,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var prov =Provider.of<ItemProvider>(context,listen: true);
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: Filter(),
@@ -22,6 +25,9 @@ class SearchScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: TextField(
+          onChanged: (text){
+            prov.searchForItems(text: text);
+          },
           decoration: InputDecoration(
             hintText: 'Search product',
             hintStyle: textTheme(context).subtitle2,
@@ -44,27 +50,18 @@ class SearchScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(5),
-          child: SpGrid(
-            width: Responsive.sW(context),
-            spacing: 15,
-            runSpacing: 15,
-            children: [
-              ProductCard(context),
-              ProductCard(context),
-              ProductCard(context),
-              ProductCard(context),
-              ProductCard(context),
-              ProductCard(context),
-              ProductCard(context),
-              ProductCard(context),
-            ],
+      body:  Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(5),
+            child: SpGrid(
+              width: Responsive.sW(context),
+              spacing: 15,
+              runSpacing: 15,
+              children: prov.searchedItemsList.map((e) => ProductCard(context, e)).toList(),
+            ),
           ),
         ),
-      ),
     );
   }
 }

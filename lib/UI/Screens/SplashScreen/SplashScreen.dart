@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
+import 'package:mobile_onlinestore/StateManagement/ItemProvider.dart';
 import 'package:mobile_onlinestore/UI/Screens/HomeScreen/HomeScreen.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initDataFromAPI() {
     Provider.of<CategoryProvider>(context, listen: false)
         .getAllCategories();
-    // Provider.of<ItemProvider>(context, listen: false)
-    //     .getAllItems();
+    Provider.of<ItemProvider>(context, listen: false)
+        .getAllItems();
   }
 }
