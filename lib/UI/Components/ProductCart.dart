@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/Models/ItemModel.dart';
 import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
 import 'package:simple_grid/simple_grid.dart';
 
 import '../../Constants.dart';
 import '../../dummyData.dart';
 
-SpGridItem ProductCard(BuildContext context) {
+SpGridItem ProductCard(BuildContext context, Item item) {
   return SpGridItem(
     xs: 6,
     sm: 4,
@@ -47,12 +48,12 @@ SpGridItem ProductCard(BuildContext context) {
               ),
             ),
             SizedBox(height: 10),
-            Text('D Shirt',
+            Text(item.itemTitle,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: textTheme(context).bodyText1),
             SizedBox(height: 10),
-            Text('\$ 77',
+            Text('\$ ${item.itemPrice}',
                 style: textTheme(context)
                     .button
                     ?.copyWith(fontWeight: FontWeight.w300)),

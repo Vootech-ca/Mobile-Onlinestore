@@ -12,6 +12,8 @@ class ItemProvider extends ChangeNotifier {
   List<dynamic> itemsList = [];
   List<dynamic> searchedItemsList = [];
 
+  List<dynamic> currentItemsList = [];
+
   Future<void> getAllItems() async {
     var response = await getHTTP(url: getAllItemsURL, headers: {});
     // ignore: unnecessary_null_comparison
@@ -19,16 +21,20 @@ class ItemProvider extends ChangeNotifier {
       print("RESPONSE IS NULL");
     }
     // print(response);
-    itemsList =
-        response["result"].map((data) => Item.fromJson(data)).toList();
+    itemsList = response["result"].map((data) => Item.fromJson(data)).toList();
     searchedItemsList = itemsList;
+    currentItemsList = itemsList;
     notifyListeners();
   }
 
-  Category getItemByLocalId(String id) {
-    Category category =
-    itemsList.firstWhere((element) => element.id == id);
-    return category;
+  void getItemsListByCatId(String catId) {
+    currentItemsList = itemsList.where((element) => element.itemCategoryId == catId).toList();
+    notifyListeners();
+  }
+
+  Item getItemByLocalId(String id) {
+    Item item = itemsList.firstWhere((element) => element.id == id);
+    return item;
   }
 
   Future<Item> getItemByGlobalId(String id) async {
@@ -50,7 +56,7 @@ class ItemProvider extends ChangeNotifier {
       notifyListeners();
     } else {
       var list = searchedItemsList.where((b) {
-        return b.name.contains(text);
+        return b.itemTitle.contains(text);
       }).toList();
 
       if (list.isEmpty) {
