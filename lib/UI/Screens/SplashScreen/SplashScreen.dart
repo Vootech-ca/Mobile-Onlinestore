@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
-import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
-import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
-import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
+import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
 import 'package:mobile_onlinestore/UI/Screens/HomeScreen/HomeScreen.dart';
-import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeSplashScreen = '/';
@@ -19,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    initDataFromAPI();
     Future.delayed(const Duration(milliseconds: 1300), () {
       // Do Something Before it Goes to Home Screen
       Navigator.pushNamed(context, HomeScreen.routeHomeScreen);
@@ -57,5 +56,13 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+
+  //INIT DARA FROM API AND SAVE IN STATES
+  void initDataFromAPI() {
+    Provider.of<CategoryProvider>(context, listen: false)
+        .getAllCategories();
+    // Provider.of<ItemProvider>(context, listen: false)
+    //     .getAllItems();
   }
 }

@@ -6,10 +6,13 @@ import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:mobile_onlinestore/Constants.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/Models/CategoryModel.dart';
+import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
 import 'package:mobile_onlinestore/UI/Components/MainDrawer.dart';
 import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoryScreen/CategoryScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_grid/simple_grid.dart';
 
 import '../../../dummyData.dart';
@@ -21,8 +24,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key:
-        _scaffoldKey,
+        key: _scaffoldKey,
         drawer: MainDrawer(),
         appBar: AppBar(
           toolbarHeight: 50,
@@ -61,77 +63,82 @@ class HomeScreen extends StatelessWidget {
             )
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: 200,
-                child: CarouselSlider.builder(
-                    scrollDirection: Axis.horizontal,
-                    unlimitedMode: true,
-                    slideIndicator: CircularSlideIndicator(
-                        padding: EdgeInsets.only(bottom: 20),
-                        currentIndicatorColor: theme(context).primaryColor),
-                    slideBuilder: (index) {
-                      return Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: adImagesList[index],
-                              placeholder: (context, url) =>
-                                  Image.asset(Constants.placeHolder),
-                            ),
-                          ));
-                    },
-                    // slideTransform: CubeTransform(),
-                    // slideIndicator: CircularSlideIndicator(
-                    //   padding: EdgeInsets.only(bottom: 32),
-                    // ),
-                    itemCount: adImagesList.length),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Categories",
-                  style: theme(context).textTheme.headline5,
+        body: Consumer<CategoryProvider>(
+          builder: (_, catState, __) => SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 200,
+                  child: CarouselSlider.builder(
+                      scrollDirection: Axis.horizontal,
+                      unlimitedMode: true,
+                      slideIndicator: CircularSlideIndicator(
+                          padding: EdgeInsets.only(bottom: 20),
+                          currentIndicatorColor: theme(context).primaryColor),
+                      slideBuilder: (index) {
+                        return Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 8),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                imageUrl: adImagesList[index],
+                                placeholder: (context, url) =>
+                                    Image.asset(Constants.placeHolder),
+                              ),
+                            ));
+                      },
+                      // slideTransform: CubeTransform(),
+                      // slideIndicator: CircularSlideIndicator(
+                      //   padding: EdgeInsets.only(bottom: 32),
+                      // ),
+                      itemCount: adImagesList.length),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Column(
-                children: [
-                  SpGrid(
-                    width: Responsive.sW(context),
-                    spacing: 15,
-                    runSpacing: 15,
-                    children: [
-                      categoryWidget(context),
-                      categoryWidget(context),
-                      categoryWidget(context),
-                      categoryWidget(context),
-                      categoryWidget(context),
-                      categoryWidget(context),
-                      categoryWidget(context),
-                      categoryWidget(context),
-                    ],
+                SizedBox(
+                  height: 4,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Categories",
+                    style: theme(context).textTheme.headline5,
                   ),
-                ],
-              ),
-            ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  children: [
+                    SpGrid(
+                        width: Responsive.sW(context),
+                        spacing: 15,
+                        runSpacing: 15,
+                        children: catState.categoriesList
+                            .map((e) => categoryWidget(context,e))
+                            .toList()
+                        //[
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        // categoryWidget(context),
+                        //],
+                        ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ));
   }
 
-  SpGridItem categoryWidget(BuildContext context) {
+  SpGridItem categoryWidget(BuildContext context,Category category) {
     return SpGridItem(
       xs: 4,
       sm: 3,
@@ -161,7 +168,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'Men',
+              category.categoryName,
               style: textTheme(context).bodyText2,
             )
           ],

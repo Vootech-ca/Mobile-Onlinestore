@@ -1,11 +1,11 @@
-final List dCategories = [
-  'Men',
-  'Women',
-  'Child',
-  'Fruits',
-  'Accessories',
-  'Electronic',
-];
+// final List dCategories = [
+//   'Men',
+//   'Women',
+//   'Child',
+//   'Fruits',
+//   'Accessories',
+//   'Electronic',
+// ];
 
 final String fruitImageDummy =
     "https://clipart-best.com/img/tomato/tomato-clip-art-6.png";
