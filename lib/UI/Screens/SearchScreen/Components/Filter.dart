@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
 import 'package:mobile_onlinestore/dummyData.dart';
+import 'package:provider/provider.dart';
 
 class Filter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return Consumer<CategoryProvider>(
+        builder: (_, catState, __) => Drawer(
       child: ListView(
         children: [
           ListTile(
@@ -17,10 +20,10 @@ class Filter extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: Colors.black),
               value: null,
               hint: Text('Selected'),
-              items: dCategories
+              items: catState.categoriesList
                   .map<DropdownMenuItem<dynamic>>((e) => DropdownMenuItem(
                         child: Text(e),
-                        value: e,
+                        value: e.categoryName,
                       ))
                   .toList(),
               onChanged: (dynamic value) {},
@@ -28,6 +31,6 @@ class Filter extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

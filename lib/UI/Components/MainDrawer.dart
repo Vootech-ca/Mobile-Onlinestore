@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -11,6 +12,12 @@ class MainDrawer extends StatelessWidget {
           children: [
             SizedBox(
               height: 20,
+            ),
+            ListTile(
+              onTap: ()=>Navigator.pushNamed(context, CategoriesScreen.routeCategoriesScreen),
+              title:
+              Text("Categories", style: theme(context).textTheme.button),
+              leading: Icon(Icons.category_outlined),
             ),
             ListTile(
               title:
