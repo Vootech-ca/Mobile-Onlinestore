@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/VooHttp.dart';
-import 'package:mobile_onlinestore/Models/CategoryModel.dart';
 import 'package:mobile_onlinestore/Models/ItemModel.dart';
 
 class ItemProvider extends ChangeNotifier {
@@ -28,7 +27,8 @@ class ItemProvider extends ChangeNotifier {
   }
 
   void getItemsListByCatId(String catId) {
-    currentItemsList = itemsList.where((element) => element.itemCategoryId == catId).toList();
+    currentItemsList =
+        itemsList.where((element) => element.itemCategoryId == catId).toList();
     notifyListeners();
   }
 

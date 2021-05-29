@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:mobile_onlinestore/Constants.dart';
+import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/Models/CategoryModel.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final words = Provider.of<Language>(context).getWords;
     return Scaffold(
         key: _scaffoldKey,
         drawer: MainDrawer(),
@@ -104,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Categories",
+                    words["categories"],
                     style: theme(context).textTheme.headline5,
                   ),
                 ),
@@ -114,8 +116,9 @@ class HomeScreen extends StatelessWidget {
                 Column(
                   children: [
                     SpGrid(
+                        crossAlignment: WrapCrossAlignment.center,
                         width: Responsive.sW(context),
-                        spacing: 15,
+                        // spacing: 15,
                         runSpacing: 15,
                         children: catState.categoriesList
                             .map((e) => categoryWidget(context, e))
@@ -146,10 +149,10 @@ class HomeScreen extends StatelessWidget {
       md: 3,
       child: GestureDetector(
         onTap: () {
-          Provider.of<ItemProvider>(context,listen: false).getItemsListByCatId(category.id.toString());
-           Navigator.pushNamed(
-            context, CategoryScreen.categoryScreenRoute,
-            arguments: category);
+          Provider.of<ItemProvider>(context, listen: false)
+              .getItemsListByCatId(category.id.toString());
+          Navigator.pushNamed(context, CategoryScreen.categoryScreenRoute,
+              arguments: category);
         },
         child: Column(
           children: [

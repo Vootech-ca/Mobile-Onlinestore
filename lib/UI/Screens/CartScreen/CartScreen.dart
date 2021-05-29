@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/dummyData.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
   static const String routeCartScreen = '/cart';
 
   @override
   Widget build(BuildContext context) {
+    final words = Provider.of<Language>(context).getWords;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart'),
+        title: Text(words['cart']),
       ),
       body: Column(
         children: [
@@ -19,7 +22,7 @@ class CartScreen extends StatelessWidget {
               padding: EdgeInsets.all(10),
               children: [
                 Text(
-                  'Items In Your Cart :',
+                  words['item in your cart'],
                   style: textTheme(context).headline5,
                 ),
                 SizedBox(height: 20),
@@ -42,7 +45,7 @@ class CartScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'Make Cart Empty',
+                              words['make cart empty'],
                               style: theme(context)
                                   .textTheme
                                   .button!
@@ -77,22 +80,22 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {},
-                    child: Text('Check Out '),
+                    child: Text(words['check out']),
                   ),
                 ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: theme(context).scaffoldBackgroundColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text('Issues in price ? Contact !'),
-                  ),
-                ),
+                // SizedBox(width: 10),
+                // Expanded(
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       primary: theme(context).scaffoldBackgroundColor,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(7),
+                //       ),
+                //     ),
+                //     onPressed: () {},
+                //     child: Text('Issues in price ? Contact !'),
+                //   ),
+                // ),
               ],
             ),
           )
@@ -102,12 +105,13 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget makeACartCard(BuildContext context) {
+    final words = Provider.of<Language>(context).getWords;
     return Stack(
       children: [
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 8,top: 10,right: 8),
+              padding: const EdgeInsets.only(left: 8, top: 10, right: 8),
               child: Column(
                 children: [
                   CircleAvatar(
@@ -169,8 +173,8 @@ class CartScreen extends StatelessWidget {
                         style: textTheme(context).headline5,
                       ),
                       SizedBox(height: 2),
-                      Text("122 Items"),
-                      Text(" 22\$ for each Item")
+                      Text("122 ${words['items']}"),
+                      Text(" 22\$ ${words['for each item']}")
                     ],
                   )
                 ],
@@ -178,13 +182,20 @@ class CartScreen extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(
-          top: 16,
-            right: 20,
-            child: Icon(
-          Icons.delete_rounded,
-          color: theme(context).errorColor,
-        ))
+        Container(
+          padding: EdgeInsets.all(20),
+          alignment: Provider.of<Language>(context).languageDirection == 'rtl'
+              ? Alignment.topLeft
+              : Alignment.topRight,
+          child: Icon(
+            Icons.delete_rounded,
+            color: theme(context).errorColor,
+          ),
+        )
+        // Positioned(
+        //     top: 16,
+        //     right:  20,
+        //     child: )
       ],
     );
   }

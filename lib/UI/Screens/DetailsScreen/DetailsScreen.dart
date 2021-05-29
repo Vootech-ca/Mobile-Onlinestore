@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/dummyData.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const String routeDetailsScreen = '/details';
   @override
   Widget build(BuildContext context) {
+    final words = Provider.of<Language>(context).getWords;
     return Scaffold(
       appBar: AppBar(
         title: Text('D Shirt'),
@@ -29,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: theme(context).accentColor,
                           borderRadius: BorderRadius.circular(7)),
-                      child: Text('Price 70\$'),
+                      child: Text('${words['price']} 70\$'),
                       padding: EdgeInsets.all(10),
                     ),
                     SizedBox(width: 10),
@@ -61,7 +64,7 @@ class DetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Description',
+                        words['description'],
                         style: textTheme(context).bodyText1,
                       ),
                       SizedBox(height: 10),
@@ -75,7 +78,7 @@ class DetailsScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Category:',
+                      '${words['category']}: ',
                       style: textTheme(context).bodyText1,
                     ),
                     SizedBox(width: 10),
@@ -104,22 +107,22 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {},
-                    child: Text('Order Now '),
+                    child: Text(words['add to cart']),
                   ),
                 ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: theme(context).scaffoldBackgroundColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text('Contact For Details'),
-                  ),
-                ),
+                // SizedBox(width: 10),
+                // Expanded(
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       primary: theme(context).scaffoldBackgroundColor,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(7),
+                //       ),
+                //     ),
+                //     onPressed: () {},
+                //     child: Text('Contact For Details'),
+                //   ),
+                // ),
               ],
             ),
           )
