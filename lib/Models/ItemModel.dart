@@ -2,6 +2,7 @@ class Item {
   final int id;
   final String itemTitle;
   final String itemPrice;
+  final String itemImage;
   final String itemDescription;
   final String itemCategoryId;
   final DateTime createdAt;
@@ -11,6 +12,7 @@ class Item {
       {required this.id,
       required this.itemTitle,
       required this.itemPrice,
+      required this.itemImage,
       required this.itemDescription,
       required this.itemCategoryId,
       required this.createdAt,
@@ -20,6 +22,7 @@ class Item {
       id: data["id"],
       itemTitle: data["item_title"],
       itemPrice: data["item_price"],
+      itemImage: data["item_image"],
       itemDescription: data["item_description"],
       itemCategoryId: data["item_category_id"],
       createdAt: DateTime.parse(data["created_at"]),
@@ -29,6 +32,7 @@ class Item {
         'id': id,
         'item_title': itemTitle,
         'item_price': itemPrice,
+        'item_image': itemImage,
         'item_description': itemDescription,
         'item_category_id': itemCategoryId,
         'created_at': createdAt,

@@ -16,7 +16,7 @@ SpGridItem ProductCard(BuildContext context, Item item) {
     md: 3,
     child: GestureDetector(
       onTap: () =>
-          Navigator.pushNamed(context, DetailsScreen.routeDetailsScreen),
+          Navigator.pushNamed(context, DetailsScreen.routeDetailsScreen,arguments: item),
       child: Container(
         // margin: const EdgeInsets.all(5.0),
         padding: const EdgeInsets.all(8.0),

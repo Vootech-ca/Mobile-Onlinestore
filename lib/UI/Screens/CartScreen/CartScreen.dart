@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
+import 'package:mobile_onlinestore/Models/ItemModel.dart';
+import 'package:mobile_onlinestore/StateManagement/CartProvider.dart';
 import 'package:mobile_onlinestore/dummyData.dart';
 import 'package:provider/provider.dart';
 
@@ -10,102 +11,108 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final words = Provider.of<Language>(context).getWords;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(words['cart']),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.all(10),
-              children: [
-                Text(
-                  words['item in your cart'],
-                  style: textTheme(context).headline5,
-                ),
-                SizedBox(height: 20),
-                makeACartCard(context),
-                makeACartCard(context),
-                makeACartCard(context),
-                makeACartCard(context),
-                makeACartCard(context),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: theme(context).accentColor,
-                            borderRadius: BorderRadius.circular(7)),
-                        child: Row(
-                          children: [
-                            Text(
-                              words['make cart empty'],
-                              style: theme(context)
-                                  .textTheme
-                                  .button!
-                                  .copyWith(color: theme(context).errorColor),
+    return Consumer<CartProvider>(
+      builder: (_, cartState, __) => Scaffold(
+        appBar: AppBar(
+          title: Text('Cart'),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.all(10),
+                children: [
+                  Text(
+                    'Items In Your Cart :',
+                    style: textTheme(context).headline5,
+                  ),
+                  SizedBox(height: 20),
+                  cartState.cartList.isNotEmpty
+                      ? Column(
+                          children: cartState.cartList
+                              .map((e) => makeACartCard(context, e))
+                              .toList(),
+                        )
+                      : SizedBox.shrink(),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () => cartState.makeCartEmpty(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: theme(context).accentColor,
+                                borderRadius: BorderRadius.circular(7)),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Make Cart Empty',
+                                  style: theme(context)
+                                      .textTheme
+                                      .button!
+                                      .copyWith(
+                                          color: theme(context).errorColor),
+                                ),
+                                SizedBox(width: 4),
+                                Icon(
+                                  Icons.delete_sweep,
+                                  color: theme(context).errorColor,
+                                )
+                              ],
                             ),
-                            SizedBox(width: 4),
-                            Icon(
-                              Icons.delete_sweep,
-                              color: theme(context).errorColor,
-                            )
-                          ],
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 4),
+                          ),
                         ),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: theme(context).accentColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7),
-                      ),
+                      ],
                     ),
-                    onPressed: () {},
-                    child: Text(words['check out']),
-                  ),
-                ),
-                // SizedBox(width: 10),
-                // Expanded(
-                //   child: ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       primary: theme(context).scaffoldBackgroundColor,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(7),
-                //       ),
-                //     ),
-                //     onPressed: () {},
-                //     child: Text('Issues in price ? Contact !'),
-                //   ),
-                // ),
-              ],
+                  )
+                ],
+              ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: theme(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text('Check Out '),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: theme(context).scaffoldBackgroundColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text('Issues in price ? Contact !'),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  Widget makeACartCard(BuildContext context) {
-    final words = Provider.of<Language>(context).getWords;
+  Widget makeACartCard(BuildContext context, Item item) {
     return Stack(
       children: [
         Row(
@@ -118,7 +125,7 @@ class CartScreen extends StatelessWidget {
                     radius: 15,
                     backgroundColor: theme(context).accentColor,
                     child: Icon(
-                      Icons.exposure_plus_1_rounded,
+                      Icons.arrow_upward,
                       color: Colors.green,
                       size: 18,
                     ),
@@ -128,7 +135,7 @@ class CartScreen extends StatelessWidget {
                     radius: 15,
                     backgroundColor: theme(context).accentColor,
                     child: Icon(
-                      Icons.exposure_minus_1_rounded,
+                      Icons.arrow_downward,
                       color: Colors.red,
                       size: 18,
                     ),
@@ -169,12 +176,12 @@ class CartScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Tomatto',
+                        item.itemTitle,
                         style: textTheme(context).headline5,
                       ),
                       SizedBox(height: 2),
-                      Text("122 ${words['items']}"),
-                      Text(" 22\$ ${words['for each item']}")
+                      Text("122 Items"),
+                      Text(" ${item.itemPrice}\$ for each Item")
                     ],
                   )
                 ],
@@ -182,20 +189,17 @@ class CartScreen extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          padding: EdgeInsets.all(20),
-          alignment: Provider.of<Language>(context).languageDirection == 'rtl'
-              ? Alignment.topLeft
-              : Alignment.topRight,
-          child: Icon(
-            Icons.delete_rounded,
-            color: theme(context).errorColor,
-          ),
-        )
-        // Positioned(
-        //     top: 16,
-        //     right:  20,
-        //     child: )
+        Positioned(
+            top: 16,
+            right: 20,
+            child: IconButton(
+              onPressed: () => Provider.of<CartProvider>(context, listen: false)
+                  .removeToCart(item),
+              icon: Icon(
+                Icons.delete_rounded,
+                color: theme(context).errorColor,
+              ),
+            ))
       ],
     );
   }

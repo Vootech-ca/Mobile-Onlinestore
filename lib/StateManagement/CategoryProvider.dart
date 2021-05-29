@@ -25,9 +25,12 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   Category getCategoryByLocalId(String id) {
-    Category category =
-        categoriesList.firstWhere((element) => element.id == id);
-    return category;
+    if(categoriesList.where((element) => element.id.toString() == id).toList().isEmpty) {
+      // print(" category list validation: Emptyyy");
+      categoriesList.first;
+      return categoriesList.first;
+    }
+    return categoriesList.where((element) => element.id.toString() == id).toList().first;
   }
 
   Future<Category> getCategoryByGlobalId(String id) async {

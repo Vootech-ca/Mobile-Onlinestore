@@ -8,6 +8,7 @@ import 'package:mobile_onlinestore/UI/Screens/DetailsScreen/DetailsScreen.dart';
 import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 import 'package:provider/provider.dart';
 import 'Helper/Theme.dart';
+import 'StateManagement/CartProvider.dart';
 import 'UI/Screens/CartScreen/CartScreen.dart';
 import 'UI/Screens/HomeScreen/HomeScreen.dart';
 import 'UI/Screens/SplashScreen/SplashScreen.dart';
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ItemProvider>(
           create: (context) => ItemProvider(),
         ),
+        ChangeNotifierProvider<CartProvider>(
+          create: (context) => CartProvider(),
         ChangeNotifierProvider<Language>(
           create: (context) => Language(),
         ),
