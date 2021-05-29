@@ -86,7 +86,9 @@ class CartScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(7),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showWarningDialog(context);
+                      },
                       child: Text('Check Out '),
                     ),
                   ),
@@ -202,5 +204,39 @@ class CartScreen extends StatelessWidget {
             ))
       ],
     );
+  }
+
+  showWarningDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+              title: new Text('Sorry !'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('It is not available right now !'),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: theme(context).primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Close'),
+                      ),
+                    ],
+                  )
+                ],
+              ));
+        });
   }
 }

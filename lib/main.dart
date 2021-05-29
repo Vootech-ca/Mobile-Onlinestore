@@ -31,9 +31,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<CartProvider>(
           create: (context) => CartProvider(),
+        ),
         ChangeNotifierProvider<Language>(
           create: (context) => Language(),
-        ),
+        )
       ],
       child: MaterialApp(
         title: 'Online Store By Voo Tech',
