@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/Responsive.dart';
 import 'package:mobile_onlinestore/Models/CategoryModel.dart';
-import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
 import 'package:mobile_onlinestore/StateManagement/ItemProvider.dart';
 import 'package:mobile_onlinestore/UI/Components/ProductCart.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +26,7 @@ class CategoryScreen extends StatelessWidget {
           padding: const EdgeInsets.only(top: 20),
           child: SpGrid(
             width: Responsive.sW(context),
-            spacing: 15,
+            // spacing: 15,
             runSpacing: 15,
             children: itemState.currentItemsList
                 .map((e) => ProductCard(context, e))

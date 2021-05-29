@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Constants.dart';
+import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
 import 'package:mobile_onlinestore/StateManagement/ItemProvider.dart';
@@ -61,9 +62,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   //INIT DARA FROM API AND SAVE IN STATES
   void initDataFromAPI() {
-    Provider.of<CategoryProvider>(context, listen: false)
-        .getAllCategories();
-    Provider.of<ItemProvider>(context, listen: false)
-        .getAllItems();
+    Provider.of<CategoryProvider>(context, listen: false).getAllCategories();
+    Provider.of<ItemProvider>(context, listen: false).getAllItems();
+    Provider.of<Language>(context, listen: false).getLanguageDataInLocal();
   }
 }
