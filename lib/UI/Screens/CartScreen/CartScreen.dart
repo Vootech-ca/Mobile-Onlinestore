@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_onlinestore/Helper/Dialogs.dart';
+import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/Models/ItemModel.dart';
@@ -11,10 +13,12 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final words = Provider.of<Language>(context,listen: false).getWords;
+
     return Consumer<CartProvider>(
       builder: (_, cartState, __) => Scaffold(
         appBar: AppBar(
-          title: Text('Cart'),
+          title: Text(words['cart']),
         ),
         body: Column(
           children: [
@@ -23,7 +27,7 @@ class CartScreen extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 children: [
                   Text(
-                    'Items In Your Cart :',
+                    words['item in your cart'],
                     style: textTheme(context).headline5,
                   ),
                   SizedBox(height: 20),
@@ -50,7 +54,7 @@ class CartScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  'Make Cart Empty',
+                                  words['make cart empty'],
                                   style: theme(context)
                                       .textTheme
                                       .button!
@@ -75,7 +79,7 @@ class CartScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: Row(
                 children: [
                   Expanded(
@@ -87,9 +91,9 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        showWarningDialog(context);
+                        Dialogs.showWarningDialog(context);
                       },
-                      child: Text('Check Out '),
+                      child: Text(words['check out']),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -101,8 +105,10 @@ class CartScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(7),
                         ),
                       ),
-                      onPressed: () {},
-                      child: Text('Issues in price ? Contact !'),
+                      onPressed: () {
+                        Dialogs.showWarningDialog(context);
+                      },
+                      child: Text(words['issues price']),
                     ),
                   ),
                 ],
@@ -115,6 +121,7 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget makeACartCard(BuildContext context, Item item) {
+    final words = Provider.of<Language>(context,listen: false).getWords;
     return Stack(
       children: [
         Row(
@@ -182,8 +189,8 @@ class CartScreen extends StatelessWidget {
                         style: textTheme(context).headline5,
                       ),
                       SizedBox(height: 2),
-                      Text("122 Items"),
-                      Text(" ${item.itemPrice}\$ for each Item")
+                      Text("122 ${words['items']}"),
+                      Text(" ${item.itemPrice}\$ ${words['for each item']}")
                     ],
                   )
                 ],
@@ -191,52 +198,22 @@ class CartScreen extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(
-            top: 16,
-            right: 20,
-            child: IconButton(
-              onPressed: () => Provider.of<CartProvider>(context, listen: false)
-                  .removeToCart(item),
-              icon: Icon(
-                Icons.delete_rounded,
-                color: theme(context).errorColor,
-              ),
-            ))
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 8),
+          child: Align(
+              alignment: Provider.of<Language>(context,listen: false).languageDirection == 'rtl'?  Alignment.topLeft :Alignment.topRight,
+              child: IconButton(
+                onPressed: () => Provider.of<CartProvider>(context, listen: false)
+                    .removeToCart(item),
+                icon: Icon(
+                  Icons.delete_rounded,
+                  color: theme(context).errorColor,
+                ),
+              )),
+        )
       ],
     );
   }
 
-  showWarningDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return new AlertDialog(
-              title: new Text('Sorry !'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('It is not available right now !'),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: theme(context).primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Close'),
-                      ),
-                    ],
-                  )
-                ],
-              ));
-        });
-  }
+
 }
