@@ -20,10 +20,10 @@ class Item {
 
   factory Item.fromJson(Map<String, dynamic> data) => Item(
       id: data["id"],
-      itemTitle: data["item_title"],
-      itemPrice: data["item_price"],
-      itemImage: data["item_image"],
-      itemDescription: data["item_description"],
+      itemTitle: data["item_title"] ?? "NULL(Server Error)",
+      itemPrice: data["item_price"] ?? "NULL(Server Error)",
+      itemImage: data["item_image"] ?? "https://trirama.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png",
+      itemDescription: data["item_description"] ?? "NULL(Server Error)",
       itemCategoryId: data["item_category_id"],
       createdAt: DateTime.parse(data["created_at"]),
       updatedAt: DateTime.parse(data["updated_at"]));
