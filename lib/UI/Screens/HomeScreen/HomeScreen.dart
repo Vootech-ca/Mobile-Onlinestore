@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final words = Provider.of<Language>(context).getWords;
+    final words = Provider.of<Language>(context,listen: false).getWords;
     return Scaffold(
         key: _scaffoldKey,
         drawer: MainDrawer(),

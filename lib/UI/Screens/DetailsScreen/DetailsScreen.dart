@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_onlinestore/Helper/Dialogs.dart';
+import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/Models/ItemModel.dart';
 import 'package:mobile_onlinestore/StateManagement/CartProvider.dart';
 import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
-import 'package:mobile_onlinestore/StateManagement/ItemProvider.dart';
+import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
 import 'package:mobile_onlinestore/dummyData.dart';
 import 'package:provider/provider.dart';
 
@@ -16,11 +18,11 @@ class DetailsScreen extends StatelessWidget {
     final item = ModalRoute.of(context)!.settings.arguments as Item;
     var catProv = Provider.of<CategoryProvider>(context, listen: false)
         .getCategoryByLocalId(item.itemCategoryId);
-
+    final words = Provider.of<Language>(context,listen: false).getWords;
     return Consumer<CartProvider>(
       builder: (_, cartState, __) => Scaffold(
         appBar: AppBar(
-          title: Text('D Shirt'),
+          title: Text(item.itemTitle),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.pop(context),
@@ -40,7 +42,7 @@ class DetailsScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: theme(context).accentColor,
                             borderRadius: BorderRadius.circular(7)),
-                        child: Text('Price ${item.itemPrice}\$'),
+                        child: Text('${words['price']} ${item.itemPrice}\$'),
                         padding: EdgeInsets.all(10),
                       ),
                       SizedBox(width: 10),
@@ -72,7 +74,7 @@ class DetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Description',
+                          words['description'],
                           style: textTheme(context).bodyText1,
                         ),
                         SizedBox(height: 10),
@@ -85,7 +87,7 @@ class DetailsScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Category:',
+                        '${words['category']} :',
                         style: textTheme(context).bodyText1,
                       ),
                       SizedBox(width: 10),
@@ -103,7 +105,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: Row(
                 children: [
                   Expanded(
@@ -119,11 +121,11 @@ class DetailsScreen extends StatelessWidget {
                             context: context,
                             builder: (BuildContext context) {
                               return new AlertDialog(
-                                  title: new Text('Order ${item.itemTitle}'),
+                                  title: new Text('${words['order']} ${item.itemTitle}'),
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text('Are you Sure Order this Product ?'),
+                                      Text(words['sure order']),
                                       SizedBox(
                                         height: 20,
                                       ),
@@ -141,9 +143,10 @@ class DetailsScreen extends StatelessWidget {
                                             onPressed: () {
                                               cartState.addToCart(item);
                                               Navigator.pop(context);
-                                              showSuccessDialog(context);
+                                              Dialogs.showSuccessDialog(
+                                                  context);
                                             },
-                                            child: Text('Yes'),
+                                            child: Text(words['yes']),
                                           ),
                                           SizedBox(
                                             width: 10,
@@ -161,7 +164,7 @@ class DetailsScreen extends StatelessWidget {
                                               // cartState.addToCart(item);
                                               Navigator.pop(context);
                                             },
-                                            child: Text('Cancel'),
+                                            child: Text(words['close']),
                                           ),
                                         ],
                                       )
@@ -169,7 +172,7 @@ class DetailsScreen extends StatelessWidget {
                                   ));
                             });
                       },
-                      child: Text('Order Now '),
+                      child: Text(words['order now']),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -181,8 +184,8 @@ class DetailsScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(7),
                         ),
                       ),
-                      onPressed: () {},
-                      child: Text('Contact For Details'),
+                      onPressed: ()=>Navigator.pushNamed(context, CartScreen.routeCartScreen),
+                      child: Text(words['go to cart']),
                     ),
                   ),
                 ],
@@ -192,39 +195,5 @@ class DetailsScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  showSuccessDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return new AlertDialog(
-              title: new Text('Success !'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('Your order Success'),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: theme(context).primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Close'),
-                      ),
-                    ],
-                  )
-                ],
-              ));
-        });
   }
 }

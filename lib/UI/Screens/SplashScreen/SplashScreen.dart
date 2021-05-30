@@ -28,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final words = Provider.of<Language>(context,listen: false).getWords;
     return Scaffold(
       backgroundColor: theme(context).primaryColor,
       body: Column(
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "SPONSERED BY",
+                    words['sponsored by'],
                     style: theme(context).textTheme.button,
                   ),
                   // Text(
