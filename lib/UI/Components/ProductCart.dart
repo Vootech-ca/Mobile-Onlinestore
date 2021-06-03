@@ -41,7 +41,7 @@ SpGridItem ProductCard(BuildContext context, Item item) {
               child: Center(
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: productImageDummy,
+                  imageUrl: "http://mamostakanm.com/dev/public/api/items/${item.itemImage}",
                   placeholder: (context, url) =>
                       Image.asset(Constants.placeHolder),
                 ),

@@ -5,7 +5,7 @@ import 'package:mobile_onlinestore/Helper/Theme.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/Models/ItemModel.dart';
 import 'package:mobile_onlinestore/StateManagement/CartProvider.dart';
-import 'package:mobile_onlinestore/dummyData.dart';
+// import 'package:mobile_onlinestore/dummyData.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
@@ -176,7 +176,7 @@ class CartScreen extends StatelessWidget {
                       6,
                     ),
                     child: Image.network(
-                      fruitImageDummy,
+                      "http://mamostakanm.com/dev/public/api/items/${item.itemImage}",
                       height: 60,
                     ),
                   ),
