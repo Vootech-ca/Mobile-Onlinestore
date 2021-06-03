@@ -19,7 +19,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   late TabController controller;
   @override
   Widget build(BuildContext context) {
-    final words = Provider.of<Language>(context,listen: false).getWords;
+    final words = Provider.of<Language>(context).getWords;
     return Consumer<CategoryProvider>(builder: (_, catState, __) {
       controller = TabController(
           length: catState.categoriesList.length, initialIndex: 0, vsync: this);

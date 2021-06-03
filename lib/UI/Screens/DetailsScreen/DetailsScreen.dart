@@ -18,7 +18,7 @@ class DetailsScreen extends StatelessWidget {
     final item = ModalRoute.of(context)!.settings.arguments as Item;
     var catProv = Provider.of<CategoryProvider>(context, listen: false)
         .getCategoryByLocalId(item.itemCategoryId);
-    final words = Provider.of<Language>(context,listen: false).getWords;
+    final words = Provider.of<Language>(context).getWords;
     return Consumer<CartProvider>(
       builder: (_, cartState, __) => Scaffold(
         appBar: AppBar(
