@@ -176,7 +176,7 @@ class CartScreen extends StatelessWidget {
                       6,
                     ),
                     child: Image.network(
-                      "http://mamostakanm.com/dev/public/api/items/${item.itemImage}",
+                      "http://www.mamostakanm.com/dev/public/items/${item.itemImage}",
                       height: 60,
                     ),
                   ),

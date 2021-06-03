@@ -48,7 +48,7 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       Expanded(
                         child: Image.network(
-                          "http://mamostakanm.com/dev/public/api/items/${item.itemImage}",
+                          "http://www.mamostakanm.com/dev/public/items/${item.itemImage}",
                           fit: BoxFit.contain,
                           height: 200,
                         ),
