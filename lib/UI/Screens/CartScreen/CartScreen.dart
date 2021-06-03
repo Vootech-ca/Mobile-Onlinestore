@@ -13,7 +13,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final words = Provider.of<Language>(context,listen: false).getWords;
+    final words = Provider.of<Language>(context).getWords;
 
     return Consumer<CartProvider>(
       builder: (_, cartState, __) => Scaffold(
@@ -121,7 +121,7 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget makeACartCard(BuildContext context, Item item) {
-    final words = Provider.of<Language>(context,listen: false).getWords;
+    final words = Provider.of<Language>(context).getWords;
     return Stack(
       children: [
         Row(

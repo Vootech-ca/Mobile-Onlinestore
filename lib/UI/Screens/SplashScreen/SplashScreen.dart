@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final words = Provider.of<Language>(context,listen: false).getWords;
+    final words = Provider.of<Language>(context).getWords;
     return Scaffold(
       backgroundColor: theme(context).primaryColor,
       body: Column(
