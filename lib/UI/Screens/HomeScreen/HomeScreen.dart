@@ -186,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl:  "http://mamostakanm.com/dev/public/api/categories/${category.categoryImage}",
+                  imageUrl:  productImageDummy,
                   placeholder: (context, url) =>
                       Image.asset(Constants.placeHolder),
                 ),
