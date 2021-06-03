@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  height: 200,
+                  height: 180,
                   child: CarouselSlider.builder(
                       scrollDirection: Axis.horizontal,
                       unlimitedMode: true,
@@ -86,11 +86,27 @@ class HomeScreen extends StatelessWidget {
                                 horizontal: 10, vertical: 8),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(5),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: adImagesList[index],
-                                placeholder: (context, url) =>
-                                    Image.asset(Constants.placeHolder),
+                              child: Stack(
+                                children: [
+                                  CachedNetworkImage(
+                                    fit: BoxFit.cover,
+                                    imageUrl: adImagesList[index],
+                                    placeholder: (context, url) =>
+                                        Image.asset(Constants.placeHolder),
+                                  ),
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 20.0,right: 8),
+                                      child: Text(
+                                        "VOO TECH",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ));
                       },
@@ -169,7 +185,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: fruitsImageDummy,
+                  imageUrl:  "http://mamostakanm.com/dev/public/api/categories/${category.categoryImage}",
                   placeholder: (context, url) =>
                       Image.asset(Constants.placeHolder),
                 ),

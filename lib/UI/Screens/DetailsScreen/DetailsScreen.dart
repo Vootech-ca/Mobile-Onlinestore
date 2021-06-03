@@ -7,7 +7,7 @@ import 'package:mobile_onlinestore/Models/ItemModel.dart';
 import 'package:mobile_onlinestore/StateManagement/CartProvider.dart';
 import 'package:mobile_onlinestore/StateManagement/CategoryProvider.dart';
 import 'package:mobile_onlinestore/UI/Screens/CartScreen/CartScreen.dart';
-import 'package:mobile_onlinestore/dummyData.dart';
+// import 'package:mobile_onlinestore/dummyData.dart';
 import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -48,7 +48,7 @@ class DetailsScreen extends StatelessWidget {
                       SizedBox(width: 10),
                       Expanded(
                         child: Image.network(
-                          productImageDummy,
+                          "http://mamostakanm.com/dev/public/api/items/${item.itemImage}",
                           fit: BoxFit.contain,
                           height: 200,
                         ),

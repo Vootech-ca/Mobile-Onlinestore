@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_onlinestore/Helper/Language.dart';
 import 'package:mobile_onlinestore/Helper/ThemeOf.dart';
 import 'package:mobile_onlinestore/UI/Screens/CategoriesScreen/CategoriesScreen.dart';
+import 'package:mobile_onlinestore/UI/Screens/SearchScreen/SearchScreen.dart';
 import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -22,6 +23,13 @@ class MainDrawer extends StatelessWidget {
               title: Text(language.getWords["categories"],
                   style: theme(context).textTheme.button),
               leading: Icon(Icons.category_outlined),
+            ),
+            ListTile(
+              onTap: () => Navigator.pushNamed(
+                  context, SearchScreen.routeSearchScreen),
+              title: Text(language.getWords["items"],
+                  style: theme(context).textTheme.button),
+              leading: Icon(Icons.shopping_cart),
             ),
             ListTile(
               title: Text(language.getWords["change mode"],

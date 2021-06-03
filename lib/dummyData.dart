@@ -12,7 +12,7 @@ final String fruitImageDummy =
 final String productImageDummy =
     "https://sc04.alicdn.com/kf/HTB1XZmDJFXXXXaAXFXX760XFXXXb.png";
 final String adImageDummy =
-    "https://d540vms5r2s2d.cloudfront.net/mad/uploads/mad_blog_5ebae3ae3850e1589306286.png";
+    "https://i.pinimg.com/originals/cd/1c/7c/cd1c7cbd61e5f596d2d59ae2ea7b3d9c.jpg";
 final String fruitsImageDummy =
     "https://www.pngkey.com/png/detail/318-3180710_nick-jonas-pngs-nick-jonas-2010.png";
 
